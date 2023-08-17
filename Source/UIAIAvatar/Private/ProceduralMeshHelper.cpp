@@ -2,7 +2,6 @@
 
 #include "ProceduralMeshHelper.h"
 
-
 // Sets default values for this component's properties
 UProceduralMeshHelper::UProceduralMeshHelper()
 {
@@ -35,7 +34,7 @@ UProceduralMeshComponent* UProceduralMeshHelper::ConvertStaticToProceduralMeshCo
 
 	// Give out a copy of the static material from the original component, as procedural meshes do not have one
 	// and therefore lose out on information about the materials
-	StaticMaterials = StaticMeshComponent->GetStaticMesh()->StaticMaterials;
+	//StaticMaterials = StaticMeshComponent->GetStaticMesh()->StaticMaterials;
 
 	// Remove the old static mesh
 	StaticMeshComponent->DestroyComponent();
@@ -50,7 +49,7 @@ UStaticMeshComponent* UProceduralMeshHelper::ConvertProceduralComponentToStaticM
 	// Generate the static mesh from the data scanned from the procedural mesh
 	UStaticMesh* StaticMesh = GenerateStaticMesh(ProceduralMeshComponent, centerOrigin);
 	// Set the static materials gotten from the old static mesh
-	StaticMesh->StaticMaterials = StaticMaterials;
+	//StaticMesh->StaticMaterials = StaticMaterials;
 
 	AStaticMeshActor* StaticMeshActor = SpawnStaticMeshActor(ProceduralMeshComponent);
 
@@ -122,7 +121,7 @@ UStaticMesh* UProceduralMeshHelper::GenerateStaticMesh(UProceduralMeshComponent*
 			if (centerOrigin) {
 				Vert.Position -= OriginLocal;
 			}
-			RawMesh.VertexPositions.Add(Vert.Position);
+			//RawMesh.VertexPositions.Add(Vert.Position);
 		}
 
 		// Copy 'wedge' info
@@ -139,11 +138,11 @@ UStaticMesh* UProceduralMeshHelper::GenerateStaticMesh(UProceduralMeshComponent*
 			FVector TangentZ = ProcVertex.Normal;
 			FVector TangentY = (TangentX ^ TangentZ).GetSafeNormal() * (ProcVertex.Tangent.bFlipTangentY ? -1.f : 1.f);
 
-			RawMesh.WedgeTangentX.Add(TangentX);
-			RawMesh.WedgeTangentY.Add(TangentY);
-			RawMesh.WedgeTangentZ.Add(TangentZ);
+			//RawMesh.WedgeTangentX.Add(TangentX);
+			//RawMesh.WedgeTangentY.Add(TangentY);
+			//RawMesh.WedgeTangentZ.Add(TangentZ);
 
-			RawMesh.WedgeTexCoords[0].Add(ProcVertex.UV0);
+			//RawMesh.WedgeTexCoords[0].Add(ProcVertex.UV0);
 			RawMesh.WedgeColors.Add(ProcVertex.Color);
 		}
 
@@ -170,24 +169,24 @@ UStaticMesh* UProceduralMeshHelper::GenerateStaticMesh(UProceduralMeshComponent*
 	{
 		StaticMesh->InitResources();
 
-		StaticMesh->LightingGuid = FGuid::NewGuid();
+		//StaticMesh->LightingGuid = FGuid::NewGuid();
 
 		// Add source to new StaticMesh
-		FStaticMeshSourceModel* SrcModel = new (StaticMesh->UStaticMesh::GetSourceModels()) FStaticMeshSourceModel();
-		SrcModel->BuildSettings.bRecomputeNormals = false;
-		SrcModel->BuildSettings.bRecomputeTangents = false;
-		SrcModel->BuildSettings.bRemoveDegenerates = false;
-		SrcModel->BuildSettings.bUseHighPrecisionTangentBasis = false;
-		SrcModel->BuildSettings.bUseFullPrecisionUVs = false;
-		SrcModel->BuildSettings.bGenerateLightmapUVs = true;
-		SrcModel->BuildSettings.SrcLightmapIndex = 0;
-		SrcModel->BuildSettings.DstLightmapIndex = 1;
-		SrcModel->RawMeshBulkData->SaveRawMesh(RawMesh);
+		//FStaticMeshSourceModel* SrcModel = new (StaticMesh->UStaticMesh::GetSourceModels()) FStaticMeshSourceModel();
+		//SrcModel->BuildSettings.bRecomputeNormals = false;
+		//SrcModel->BuildSettings.bRecomputeTangents = false;
+		//SrcModel->BuildSettings.bRemoveDegenerates = false;
+		//SrcModel->BuildSettings.bUseHighPrecisionTangentBasis = false;
+		//SrcModel->BuildSettings.bUseFullPrecisionUVs = false;
+		//SrcModel->BuildSettings.bGenerateLightmapUVs = true;
+		//SrcModel->BuildSettings.SrcLightmapIndex = 0;
+		//SrcModel->BuildSettings.DstLightmapIndex = 1;
+		//SrcModel->RawMeshBulkData->SaveRawMesh(RawMesh);
 
 		// Copy materials to new mesh
 		for (UMaterialInterface* Material : MeshMaterials)
 		{
-			StaticMesh->StaticMaterials.Add(FStaticMaterial(Material));
+			//StaticMesh->StaticMaterials.Add(FStaticMaterial(Material));
 		}
 
 		//Set the Imported version before calling the build
@@ -212,7 +211,7 @@ UStaticMesh* UProceduralMeshHelper::GenerateStaticMesh(UProceduralMeshComponent*
 				}
 			}
 		}
-		StaticMesh->BodySetup->AddCollisionFrom(CollGeom);
+		//StaticMesh->BodySetup->AddCollisionFrom(CollGeom);
 		StaticMesh->Build();
 		StaticMesh->PostEditChange();
 	}

@@ -402,7 +402,8 @@ void AIAIAvatarCharacter::LookUpAtRate(float Rate)
 
 		 // Getting location relative to component
 		 ObjLocationInCompSpace = GetMesh()->GetComponentTransform().InverseTransformPosition((*It).ImpactPoint);
-		 obj_name = (*It).Actor->GetName();
+		 //obj_name = (*It).Actor->GetName();
+		 obj_name = (*It).GetActor()->GetActorNameOrLabel();
 
 		 // Get Animation
 		 UIAIAvatarAnimationInstance *AnimationInstance = Cast<UIAIAvatarAnimationInstance>(GetMesh()->GetAnimInstance());
