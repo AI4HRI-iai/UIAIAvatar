@@ -35,6 +35,10 @@
     {
       "Name": "ProceduralMeshComponent",
       "Enabled": true
+    },
+    {
+      "Name": "SteamVR",
+      "Enabled": true
     }
   ]
 }
