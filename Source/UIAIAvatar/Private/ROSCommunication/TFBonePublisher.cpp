@@ -80,7 +80,8 @@ void UTFBonePublisher::Publish()
 					FTransform ParentTransform = Mesh->GetBoneTransform(pbone_index);
 					ROSTransf =
 						FConversions::UToROS(
-							UKismetMathLibrary::ConvertTransformToRelative(ParentTransform, ChildTransform));
+							UKismetMathLibrary::MakeRelativeTransform(ParentTransform, ChildTransform));
+							//ConvertTransformToRelative
 				}
 				FString ChildFrameId = Mesh->GetBoneName(i).ToString();
 
