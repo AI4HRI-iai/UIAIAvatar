@@ -38,7 +38,7 @@
     },
     {
       "Name": "SteamVR",
-      "Enabled": true
+      "Enabled": false
     }
   ]
 }

@@ -28,7 +28,7 @@ public class UIAIAvatar : ModuleRules
         PrivateDependencyModuleNames.AddRange(new string[] {
 			"HeadMountedDisplay",
             "NavigationSystem",
-			"SteamVR"
+		//	"SteamVR"
 			});
 
 		// Uncomment if you are using Slate UI
