@@ -2,7 +2,7 @@
 
 #include "IAIAvatarCharacter.h"
 #include "DrawDebugHelpers.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
+//#include "HeadMountedDisplayFunctionLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -148,13 +148,13 @@ void AIAIAvatarCharacter::SetupPlayerInputComponent(class UInputComponent* Playe
 	PlayerInputComponent->BindTouch(IE_Released, this, &AIAIAvatarCharacter::TouchStopped);
 
 	// VR headset functionality
-	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AIAIAvatarCharacter::OnResetVR);
+//	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AIAIAvatarCharacter::OnResetVR);
 }
 
-void AIAIAvatarCharacter::OnResetVR()
-{
-	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
-}
+// void AIAIAvatarCharacter::OnResetVR()
+// {
+// 	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
+// }
 
 void AIAIAvatarCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
 {

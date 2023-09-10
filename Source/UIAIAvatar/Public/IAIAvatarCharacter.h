@@ -81,7 +81,7 @@ protected:
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
 	/** Resets HMD orientation in VR. */
-	void OnResetVR();
+	//void OnResetVR();
 
 public:
 
