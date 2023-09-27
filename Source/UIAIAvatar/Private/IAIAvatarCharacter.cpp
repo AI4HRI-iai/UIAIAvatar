@@ -1272,8 +1272,15 @@ void AIAIAvatarCharacter::ProcessConsoleCommand(FString inLine) {
 		UE_LOG(LogAvatarCharacter, Log, TEXT("Processing Command %s"), *inLine);
 
 		if (tokens.Num() == 1) {
+			// Wave to agent
+			if (tokens[0].Equals("wave")) {
+				// Get Animation
+				UIAIAvatarAnimationInstance *AnimationInstance = Cast<UIAIAvatarAnimationInstance>(GetMesh()->GetAnimInstance());
+				check(AnimationInstance != nullptr);
+				AnimationInstance->bActivateWaveAnim = true;
+			}
 			// Listing objects
-			if (tokens[0].Equals("list")) {
+			else if (tokens[0].Equals("list")) {
 				SetTargetObject();
 			}
 			// Sit
@@ -1694,8 +1701,9 @@ void AIAIAvatarCharacter::ProcessConsoleCommand(FString inLine) {
 					"ERROR: No matching command for: %s %s %s %s %s"), \
 					*tokens[0], *tokens[1], *tokens[2], *tokens[3], *tokens[4]), true, FVector2D(1.7, 1.7));
 				GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5, FColor::Yellow, \
-					"5 words command are: look to <x> <y> <z>         \n\
-					                      place <left|right> <x> <y> <z> ", \
+					R"(5 words command are: look to <x> <y> <z>         
+
+					                      place <left|right> <x> <y> <z> )", \
 					true, FVector2D(1.5, 1.5));
 			}
 		}

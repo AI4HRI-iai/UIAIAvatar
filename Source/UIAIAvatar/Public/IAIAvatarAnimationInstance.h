@@ -309,6 +309,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = IAIAvatar)
 		bool bActivateSitAnim;
 
+	// Activate waving animation
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = IAIAvatar)
+		bool bActivateWaveAnim;
+
 	// Move to left sit
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = IAIAvatar)
 		bool bActivateMoveToLeftSit;
