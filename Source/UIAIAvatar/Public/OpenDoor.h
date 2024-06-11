@@ -44,4 +44,9 @@ private:
         void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
     void OpenDoor();
+
+    //UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess = "true"))
+    //class UStaticMeshComponent* AttachedDoor;
+
+    USceneComponent* SceneRoot = nullptr;
 };

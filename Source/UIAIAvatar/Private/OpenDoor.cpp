@@ -28,6 +28,14 @@ void UOpenDoor::BeginPlay()
 	Super::BeginPlay();
 	UWorld* World = GetWorld();
 
+	 USceneComponent* RootComponent = GetOwner()->GetRootComponent();
+	
+	 if (RootComponent)
+	 {
+	 	// Attach the static mesh component to the owner actor's root component
+	 	TriggerVolume->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepWorldTransform);  
+	 }
+
 	if (TriggerVolume)
 	{
 		TriggerVolume->OnComponentBeginOverlap.AddDynamic(this, &UOpenDoor::OnOverlapBegin);
